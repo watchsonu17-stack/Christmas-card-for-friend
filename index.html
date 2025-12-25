@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas Swetha!</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Pulsing Title Animation */
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 10px #ff4d4d, 0 0 30px #ffffff;
+            animation: pulse 2s infinite alternate;
+            margin-bottom: 5px;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); text-shadow: 0 0 10px #ff4d4d; }
+            to { transform: scale(1.05); text-shadow: 0 0 25px #ff4d4d, 0 0 10px #fff; }
+        }
+
+        .sub-text {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-style: italic;
+            color: #ecf0f1;
+        }
+
+        /* Floating Button Animation */
+        .btn-notes {
+            background: linear-gradient(45deg, #ff4d4d, #d63031);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .btn-notes:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Falling Snow and Icons */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="snow-wrapper"></div>
+
+    <h1>Merry Christmas, Swetha! 🎄</h1>
+    <p class="sub-text">Tap the gift below to see my notes for you...</p>
+
+    <a href="notes.html" class="btn-notes">🎁 Open Your Notes</a>
+
+    <script>
+        const icons = ['❄', '❅', '❆', '✨', '🎄'];
+        
+        function createParticle() {
+            const wrapper = document.getElementById('snow-wrapper');
+            const particle = document.createElement('div');
+            
+            particle.classList.add('snowflake');
+            particle.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            particle.style.opacity = Math.random();
+            particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            wrapper.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        // Create particles every 150ms
+        setInterval(createParticle, 150);
+    </script>
+</body>
+</html>
